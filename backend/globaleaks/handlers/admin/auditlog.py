@@ -35,6 +35,7 @@ def get_tips(session, tid):
     comments_by_itip = {}
     messages_by_itip = {}
     files_by_itip = {}
+    receiver_access_by_itip = {}
 
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
@@ -52,6 +53,14 @@ def get_tips(session, tid):
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
+    # Fetch number of receivers who has access to each itip
+    for itip_id, count in session.query(models.ReceiverTip.internaltip_id,
+                                        func.count(models.ReceiverTip.id)) \
+                                 .filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                         models.InternalTip.tid == tid) \
+                                 .group_by(models.ReceiverTip.internaltip_id):
+        receiver_access_by_itip[itip_id] = count
+
     for itip in session.query(models.InternalTip).filter(models.InternalTip.tid == tid):
         tips.append({
             'id': itip.id,
@@ -65,6 +74,7 @@ def get_tips(session, tid):
             'tor': itip.tor,
             'comments': comments_by_itip.get(itip.id, 0),
             'messages': messages_by_itip.get(itip.id, 0),
+            'num_receivers': receiver_access_by_itip.get(itip.id, 0),
             'files': files_by_itip.get(itip.id, 0),
             'last_access': itip.last_access
         })
