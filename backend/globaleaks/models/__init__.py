@@ -624,6 +624,7 @@ class _InternalTip(Model):
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
+    access_count = Column(Integer, default=0, nullable=False)
     tor = Column(Boolean, default=False, nullable=False)
     mobile = Column(Boolean, default=False, nullable=False)
     score = Column(Integer, default=0, nullable=False)
