@@ -233,6 +233,13 @@ def db_refresh_tenant_cache(session, to_refresh=None):
                                     models.User.tid.in_(tids)):
         State.tenants[custodian.tid].cache['custodian'] = True
 
+    for analyst in session.query(models.User) \
+                            .filter(models.User.role == 'analyst',
+                                    models.User.enabled.is_(True),
+                                    models.User.tid.in_(tids)):
+        State.tenants[analyst.tid].cache['analyst'] = True
+
+
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tids)):
         State.tenants[redirect.tid].cache['redirects'][redirect.path1] = redirect.path2
 

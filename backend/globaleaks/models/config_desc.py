@@ -144,6 +144,7 @@ ConfigFilters = {
         'footer_whistleblowing_policy',
         'hostname',
         'https_admin',
+        'https_analyst',
         'https_custodian',
         'https_enabled',
         'https_receiver',
