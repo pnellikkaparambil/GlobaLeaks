@@ -30,7 +30,7 @@
 # Midgard, 2015
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
-# M M <wouter.moraal92@gmail.com>, 2015
+# M M <privstuff@woutermoraal.nl>, 2015
 # Nathan Follens, 2016-2017
 # Meteor0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
@@ -554,6 +554,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -595,9 +604,6 @@ msgstr "Datum van aanmaken"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "Messages"
-msgstr "Berichten"
 
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"
@@ -1044,8 +1050,8 @@ msgstr "Zoekmachine-indexering inschakelen"
 msgid "Default questionnaire"
 msgstr "Standaard vragenformulier"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Toon contexten in alfabetische volgorde"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
@@ -1497,11 +1503,11 @@ msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot
 msgid "Date of the request"
 msgstr "Datum aanvraag"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Tonen"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"

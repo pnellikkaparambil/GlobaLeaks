@@ -517,6 +517,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hesabat göndər"
 
@@ -558,9 +567,6 @@ msgstr "Yaradılma tarixi"
 
 msgid "Last access"
 msgstr "Son giriş "
-
-msgid "Messages"
-msgstr "İsmarışlar"
 
 msgid "Whistleblower's last access"
 msgstr "Məlumatlandıranın son girişi"
@@ -1007,8 +1013,8 @@ msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 msgid "Default questionnaire"
 msgstr "Standart sorğu"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Konteksti əlifba sırası ilə göstər"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələrinin ölçü həddi"
@@ -1460,11 +1466,11 @@ msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olun
 msgid "Date of the request"
 msgstr "Sorğunun tarixi"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Göstər"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Təbriklər!"

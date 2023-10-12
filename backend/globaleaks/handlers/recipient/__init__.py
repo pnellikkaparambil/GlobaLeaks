@@ -66,7 +66,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         receiver_access_by_itip[itip_id] = count
 
     # Fetch rtip, internaltip and associated questionnaire schema
-    rtips_ids = {}
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
                                                    models.InternalTip,
                                                    models.InternalTipAnswers,
@@ -80,12 +79,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                     models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
-                                            .order_by(models.InternalTipAnswers.creation_date.asc()):
-        if rtip.id in rtips_ids:
-            continue
-
-        rtips_ids[rtip.id] = True
-
+                                            .group_by(models.ReceiverTip.id):
         answers = answers.answers
         label = itip.label
         if itip.crypto_tip_pub_key:
@@ -152,11 +146,14 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
 
     if operation == 'grant' and receiver.can_grant_access_to_reports:
         for itip, rtip in result:
-            db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver'])
+            if db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver']):
+                db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
     elif operation == 'revoke' and receiver.can_grant_access_to_reports:
         for itip, _ in result:
-            db_revoke_tip_access(session, tid, user_id, itip, args['receiver'])
+            if db_revoke_tip_access(session, tid, user_id, itip, args['receiver']):
+                db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
+
 
     else:
         raise errors.ForbiddenOperation

@@ -70,7 +70,7 @@ var GL = angular.module("GL", [
     }
 
     function fetchResources(role, lst) {
-      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, UserPreferences) {
+      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "IdentityAccessRequests", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, IdentityAccessRequests, UserPreferences) {
         var resourcesPromises = {
           auditlog: function() { return AdminAuditLogResource.query().$promise; },
           node: function() { return AdminNodeResource.get().$promise; },
@@ -86,6 +86,7 @@ var GL = angular.module("GL", [
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise; },
           submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise; },
           rtips: function() { return ReceiverTips.query().$promise; },
+          iars: function() { return IdentityAccessRequests.query().$promise; },
           preferences: function() { return UserPreferences.get().$promise; }
         };
 
@@ -185,7 +186,7 @@ var GL = angular.module("GL", [
       when("/recipient/settings", {
         templateUrl: "views/recipient/settings.html",
         controller: "AdminCtrl",
-        header_title: "Site settings",
+        header_title: "Settings",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
@@ -224,7 +225,7 @@ var GL = angular.module("GL", [
       when("/admin/settings", {
         templateUrl: "views/admin/settings.html",
         controller: "AdminCtrl",
-        header_title: "Site settings",
+        header_title: "Settings",
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
@@ -346,7 +347,7 @@ var GL = angular.module("GL", [
         header_title: "Requests",
         resolve: {
           access: requireAuth("custodian"),
-          resources: fetchResources("custodian", ["preferences"])
+          resources: fetchResources("custodian", ["iars", "preferences"])
         }
       }).
       when("/login", {
@@ -478,7 +479,7 @@ var GL = angular.module("GL", [
       testChunks: false,
       simultaneousUploads: 1,
       generateUniqueIdentifier: function () {
-        return Math.random() * 1000000 + 1000000;
+        return crypto.randomUUID();
       },
       headers: function() {
         return $rootScope.Authentication.get_headers();

@@ -1,3 +1,65 @@
+Changes in version 4.13.13
+    Implement speaker anonymization based on vocoder (#3483)
+    Fix issue on identity access for identities inserted before version 4.11 (#3628)
+    Fix homepage link definition in debian packaging (#3685)
+    Fix regression in user email change API (#3674)
+    Bump npm dependencies to latest versions
+    Update translations
+
+Changes in version 4.13.12
+    Add Docker scripts: Dockerfile and docker-compose.yaml
+    Apply improvements for SEO purposes
+    Bump npm dependencies to latest versions
+    Add systemd script and revise packaging
+    Implement automated restart on failure (e.g. OOM)
+    Update translations
+
+Changes in version 4.13.11
+    Revise file decryption compatibility in compatibility with all sw versions
+
+Changes in version 4.13.10
+    Revise fixes included in 4.13.10 in compatibility with all sw versions
+
+Changes in version 4.13.9
+    Complete fix for failure on files migration from versions <= 4.11.5 (#3606)
+    File restore procedure described on ticket
+
+Changes in version 4.13.8
+    Fix regression on fileviewer introduced in 4.13.0
+    Revise migration to db version 65 in relation to recipient files
+
+Changes in version 4.13.7
+    Revise firewall rules in relation to new rootless mode
+
+Changes in version 4.13.6
+    Refactor application to be run as rootless
+    Fix additional questionnaire functionality
+    Fix issue #3610
+    Bump client version to latest versions
+    Update translations
+
+Changes in version 4.13.5
+    Fix issue #3609
+
+Changes in version 4.13.4
+    Fix duplicated entries shown on reports lists
+
+Changes in version 4.13.3
+    Fix bug #3599 introduced in release 4.13.2
+
+Changes in version 4.13.2
+    Ensure to register the same time for every action performed during a submission
+    Log admin operation: send_password_reset_email
+    Optimize Tor loading storing consensus data permanently
+    Change tor socket port to 9999
+
+Changes in version 4.13.1
+    Fix issue wiith selection of users to which granting report access
+    Remove redundant reordering of reports reordered on the client
+    Fix order of identity access requests by date (reverse)
+    Fix indicators for identities provided after the initial report
+    Fix issue #3592
+
 Changes in version 4.13.0
     Make it possible for recipients to transfer access to their reports to other recipients (#3511)
     Make it possible to configure a Privacy Policy for internal users (#3510)

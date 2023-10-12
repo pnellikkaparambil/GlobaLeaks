@@ -512,6 +512,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Есеп беру"
 
@@ -553,9 +562,6 @@ msgstr "Жасалған күні"
 
 msgid "Last access"
 msgstr "Соңғы қатынасу"
-
-msgid "Messages"
-msgstr "Хабарлар"
 
 msgid "Whistleblower's last access"
 msgstr "Хабарлаушының соңғы рет қатынасуы"
@@ -1002,8 +1008,8 @@ msgstr "Іздеу жүйелерінің индекстеуін қосу"
 msgid "Default questionnaire"
 msgstr "Әдепкі сауалнама"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Мәнмәтіндерді алфавиттік ретпен көрсету"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Файл тіркемелерінің өлшемінің шектеуі"
@@ -1455,11 +1461,11 @@ msgstr "Сақтаушыдан хабарлаушының жеке тұлғас�
 msgid "Date of the request"
 msgstr "Сұратым күні"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Көрсету"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Құттықтаймыз!"

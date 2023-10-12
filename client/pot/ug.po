@@ -512,6 +512,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "بىر مەلۇمات يوللا"
 
@@ -553,9 +562,6 @@ msgstr "قۇرۇلغان چېسلا"
 
 msgid "Last access"
 msgstr "ئاخىرقى زىيارەت"
-
-msgid "Messages"
-msgstr "ئۇچۇرلار"
 
 msgid "Whistleblower's last access"
 msgstr "پاش قىلغۇچىنىڭ ئاخىرقى زىيارىتى"
@@ -1002,8 +1008,8 @@ msgstr "ئاختۇرۇش ماتورلىرىنىڭ ئىندېكىسلىشىنى �
 msgid "Default questionnaire"
 msgstr "كۆڭۈلدىكى راي سىناش"
 
-msgid "Show contexts in alphabetical order"
-msgstr "مەزمۇنلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
@@ -1455,11 +1461,11 @@ msgstr "ساقلىغۇچى پاش قىلغۇچىنىڭ كىملىگىنى زىي
 msgid "Date of the request"
 msgstr "تەلەپ قىلغان چېسلا"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "كۆرسەت"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "تەبرىكلەيمىز!"

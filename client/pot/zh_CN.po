@@ -531,6 +531,15 @@ msgstr ""
 msgid "Voice"
 msgstr "聲音"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -572,9 +581,6 @@ msgstr "创建日期"
 
 msgid "Last access"
 msgstr "上次访问"
-
-msgid "Messages"
-msgstr "消息"
 
 msgid "Whistleblower's last access"
 msgstr "揭发者上次访问"
@@ -1021,8 +1027,8 @@ msgstr "启用搜索引擎索引"
 msgid "Default questionnaire"
 msgstr "默认问卷"
 
-msgid "Show contexts in alphabetical order"
-msgstr "按字母顺序显示上下文"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "文件附件大小限制"
@@ -1474,11 +1480,11 @@ msgstr "访问揭发者身份的请求已发送至保管人。"
 msgid "Date of the request"
 msgstr "请求日期"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "显示"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "恭喜！"

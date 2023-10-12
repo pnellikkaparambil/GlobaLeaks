@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -551,9 +560,6 @@ msgstr ""
 
 msgid "Last access"
 msgstr "Mara ya mwisho kuingia"
-
-msgid "Messages"
-msgstr "Ujumbe"
 
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
@@ -1000,8 +1006,8 @@ msgstr "Wezesha kivinjari cha kutafuta"
 msgid "Default questionnaire"
 msgstr "Chaguo la msingi la dodoso"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
@@ -1453,11 +1459,11 @@ msgstr "Ufikiaji wa kitambulisho cha mtoa taarifa za siri umeombwa kwa mwangalzi
 msgid "Date of the request"
 msgstr "Tarehe ya kuomba"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Onyesha"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Hongera!"
