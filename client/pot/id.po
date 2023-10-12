@@ -535,6 +535,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Buat laporan"
 
@@ -576,9 +585,6 @@ msgstr "Tanggal pembuatan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "Messages"
-msgstr "Pesan"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir informan publik"
@@ -1025,8 +1031,8 @@ msgstr "Aktifkan pengindeksan mesin pencari"
 msgid "Default questionnaire"
 msgstr "Kuesioner bawaan "
 
-msgid "Show contexts in alphabetical order"
-msgstr "Memperlihatkan konteks dalam urutan abjad "
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
@@ -1478,11 +1484,11 @@ msgstr "Akses untuk identitas informan publik telah diminta oleh pihak penjaga"
 msgid "Date of the request"
 msgstr "Tanggal permintaan"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Tampilkan"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Selamat!"

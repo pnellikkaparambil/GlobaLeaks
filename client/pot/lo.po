@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
@@ -551,9 +560,6 @@ msgstr "ວັນທີສ້າງ"
 
 msgid "Last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
-
-msgid "Messages"
-msgstr "ຂໍ້ຄວາມ"
 
 msgid "Whistleblower's last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍຂອງຜູ້ແຈ້ງເບາະແສ"
@@ -1000,8 +1006,8 @@ msgstr "ເປີດນຳໃຊ້ການສ້າງດັດຊະນີຂ
 msgid "Default questionnaire"
 msgstr "ແບບສອບຖາມທີ່ເປັນຄ່າເລີ່ມຕົ້ນ"
 
-msgid "Show contexts in alphabetical order"
-msgstr "ສະແດງເນື້ອຫາຕາມລຳດັບຕົວອັກສອນ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
@@ -1453,11 +1459,11 @@ msgstr "ໄດ້ມີການຮ້ອງຂໍການເຂົ້າເຖ
 msgid "Date of the request"
 msgstr "ວັນທີຮ້ອງຂໍ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ສະແດງ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "ຂໍສະແດງຄວາມຍິນດີດ້ວຍ!"

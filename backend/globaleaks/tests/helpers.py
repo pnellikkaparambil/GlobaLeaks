@@ -47,7 +47,7 @@ from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.token import Token
-from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
+from globaleaks.utils.utility import datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 
 GCE.options['OPSLIMIT'] = 1
@@ -481,9 +481,9 @@ def forge_request(uri=b'https://www.globaleaks.org/',
         port = int(x[1])
     else:
         if uri.startswith(b'http://'):
-            port = 80
+            port = 8080
         else:
-            port = 443
+            port = 8443
 
     request = DummyRequest([b''])
     request.tid = 1
@@ -500,12 +500,12 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.client_ua = b''
     request.client_using_mobile = False
     request.client_using_tor = False
-    request.port = 443
+    request.port = 8443
     request.language = 'en'
     request.multilang = False
 
     def isSecure():
-        if request.port in [443, 8443]:
+        if request.port == 8443:
             return True
         else:
             return False
@@ -897,11 +897,11 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def force_wbtip_expiration(self, session):
-        session.query(models.InternalTip).update({'last_access': datetime_null()})
+        session.query(models.InternalTip).update({'last_access': datetime_now()})
 
     @transact
     def force_itip_expiration(self, session):
-        session.query(models.InternalTip).update({'expiration_date': datetime_null()})
+        session.query(models.InternalTip).update({'expiration_date': datetime_now()})
 
     @transact
     def set_itips_near_to_expire(self, session):

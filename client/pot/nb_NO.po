@@ -512,6 +512,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Legg inn en rapport"
 
@@ -553,9 +562,6 @@ msgstr "Opprettelsesdato"
 
 msgid "Last access"
 msgstr "Siste tilgang"
-
-msgid "Messages"
-msgstr "Meldinger"
 
 msgid "Whistleblower's last access"
 msgstr "Siste tilgang til fløyteblåseren"
@@ -1002,8 +1008,8 @@ msgstr "Aktiver søkemotor-indeksering"
 msgid "Default questionnaire"
 msgstr "Standard spørreskjema"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
@@ -1455,11 +1461,11 @@ msgstr "Tilgang til fløyteblåserens identitet har blitt forespurt av tillitspe
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Vis"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulerer!"

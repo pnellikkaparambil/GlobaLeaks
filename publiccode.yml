@@ -1,11 +1,11 @@
 name: GlobaLeaks
-releaseDate: '2023-08-16'
+releaseDate: '2023-10-09'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
 roadmap: "https://docs.globaleaks.org/en/main/roadmap/"
 logo: brand/assets/globaleaks-icon-color.svg
-softwareVersion: 4.13.0
+softwareVersion: 4.13.13
 softwareType: standalone/web
 developmentStatus: stable
 platforms:
@@ -341,6 +341,9 @@ description:
       - documentation/images/recipient/reports.png
       - documentation/images/recipient/report.png
 usedBy:
+  - ANAC - Autorità Nazionale Anticorruzione
+  - Ministero della Difesa
+  - Ministero della Giustizia
   - A.s.l. Napoli 1 Centro
   - Abbanoa
   - Abc Latina

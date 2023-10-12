@@ -523,6 +523,15 @@ msgstr "Prohlášení o přístupu"
 msgid "Voice"
 msgstr "Hlas"
 
+msgid "Everyone"
+msgstr "Všichni"
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Podat oznámení"
 
@@ -564,9 +573,6 @@ msgstr "Datum vytvoření"
 
 msgid "Last access"
 msgstr "Poslední přístup"
-
-msgid "Messages"
-msgstr "Zprávy"
 
 msgid "Whistleblower's last access"
 msgstr "Poslední přístup oznamovatele"
@@ -1013,8 +1019,8 @@ msgstr "Povolit vyhledávačům indexování."
 msgid "Default questionnaire"
 msgstr "Výchozí dotazník"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Ukázat kontexty v abecedním pořadí"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
@@ -1466,11 +1472,11 @@ msgstr "Správce byl požádán o přístup k identitě oznamovatele"
 msgid "Date of the request"
 msgstr "Datum požadavku"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Ukázat"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulujeme!"

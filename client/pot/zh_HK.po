@@ -512,6 +512,15 @@ msgstr ""
 msgid "Voice"
 msgstr "聲音"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交報告"
 
@@ -553,9 +562,6 @@ msgstr "建立日期"
 
 msgid "Last access"
 msgstr "最近一次存取"
-
-msgid "Messages"
-msgstr "訊息"
 
 msgid "Whistleblower's last access"
 msgstr "吹哨者最近一次存取"
@@ -1002,8 +1008,8 @@ msgstr "允許搜尋引擎進行索引"
 msgid "Default questionnaire"
 msgstr "預設問卷"
 
-msgid "Show contexts in alphabetical order"
-msgstr "以字母順序顯示主題"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "附件檔案大小上限"
@@ -1455,11 +1461,11 @@ msgstr "已向保管人請求吹哨者的個人身份。"
 msgid "Date of the request"
 msgstr "請求日期"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "顯示"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "恭喜您！"

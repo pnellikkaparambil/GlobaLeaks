@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - Free and Open-Source Whistleblowing Software",
-  "version": "4.13.0",
+  "version": "4.13.13",
   "license": "AGPL-3.0",
   "author": "GlobaLeaks",
   "repository": {
@@ -9,25 +9,25 @@
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "scripts": {
-    "test": "echo grunt instrument-client && npx nyc --report-dir=./cypress/coverage cypress run --browser chrome"
+    "test": "npx nyc --report-dir=./cypress/coverage cypress run --browser chrome"
   },
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
-    "@fontsource/inter": "5.0.8",
+    "@fontsource/inter": "5.0.13",
     "@fontsource/noto-sans-arabic": "5.0.8",
     "@fontsource/noto-sans-armenian": "5.0.8",
     "@fontsource/noto-sans-bengali": "5.0.8",
-    "@fontsource/noto-sans-ethiopic": "5.0.8",
-    "@fontsource/noto-sans-georgian": "5.0.9",
-    "@fontsource/noto-sans-hebrew": "5.0.9",
-    "@fontsource/noto-sans-hk": "5.0.7",
-    "@fontsource/noto-sans-jp": "5.0.8",
+    "@fontsource/noto-sans-ethiopic": "5.0.13",
+    "@fontsource/noto-sans-georgian": "5.0.15",
+    "@fontsource/noto-sans-hebrew": "5.0.15",
+    "@fontsource/noto-sans-hk": "5.0.14",
+    "@fontsource/noto-sans-jp": "5.0.14",
     "@fontsource/noto-sans-khmer": "5.0.8",
-    "@fontsource/noto-sans-kr": "5.0.7",
-    "@fontsource/noto-sans-lao": "5.0.8",
+    "@fontsource/noto-sans-kr": "5.0.14",
+    "@fontsource/noto-sans-lao": "5.0.13",
     "@fontsource/noto-sans-myanmar": "5.0.8",
-    "@fontsource/noto-sans-sc": "5.0.7",
+    "@fontsource/noto-sans-sc": "5.0.14",
     "@fontsource/noto-sans-tamil": "5.0.8",
     "@fontsource/noto-sans-thaana": "5.0.8",
     "@fontsource/noto-sans-thai": "5.0.8",
@@ -52,18 +52,18 @@
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
-    "pdfjs-dist": "3.9.179",
+    "pdfjs-dist": "3.11.174",
     "qrcode-generator": "1.4.4",
     "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "@babel/cli": "7.22.10",
-    "@babel/core": "7.22.10",
-    "@cypress/code-coverage": "3.11.0",
+    "@babel/cli": "7.23.0",
+    "@babel/core": "7.23.0",
+    "@cypress/code-coverage": "3.12.1",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "12.17.4",
-    "eslint": "8.47.0",
+    "cypress": "13.3.0",
+    "eslint": "8.51.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -80,17 +80,17 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.12.2",
+    "npm-check-updates": "16.14.5",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "stylelint": "15.10.3",
     "stylelint-config-standard": "34.0.0",
     "superagent": "8.1.2",
-    "terser": "5.19.2"
+    "terser": "5.21.0"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "15.10.2"
+      "stylelint": "15.10.3"
     }
   }
 }

@@ -530,6 +530,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr " \nWyślij zgłoszenie"
 
@@ -571,9 +580,6 @@ msgstr "Data utworzenia"
 
 msgid "Last access"
 msgstr "Ostatnia wizyta"
-
-msgid "Messages"
-msgstr "Wiadomości"
 
 msgid "Whistleblower's last access"
 msgstr "WB Ostatnio Zalogowany"
@@ -1020,8 +1026,8 @@ msgstr "Włącz indeksowanie przez wyszukiwarki internetowe"
 msgid "Default questionnaire"
 msgstr "Domyślna ankieta"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Sortuj konteksty alfabetycznie"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Limit wielkości załączników"
@@ -1473,11 +1479,11 @@ msgstr "Dozorca zażądał dostępu do tożsamości sygnalisty."
 msgid "Date of the request"
 msgstr "Data żądania"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Pokaż"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulacje!"

@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
@@ -551,9 +560,6 @@ msgstr "د جوړولو نېټه"
 
 msgid "Last access"
 msgstr "وروستی لاسرسی"
-
-msgid "Messages"
-msgstr "پیغامونه"
 
 msgid "Whistleblower's last access"
 msgstr "د افشاګر وروستی لاسرسی"
@@ -1000,8 +1006,8 @@ msgstr "د پلټنې د انجنونو د شاخص فعالول"
 msgid "Default questionnaire"
 msgstr "عادې پوښتنلیک"
 
-msgid "Show contexts in alphabetical order"
-msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
@@ -1453,11 +1459,11 @@ msgstr "د افشاګر پیژندګلوي ته لاسرسی لرل ساتونک
 msgid "Date of the request"
 msgstr "د غوښتنې نېټه"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ښودل"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "مبارک!"

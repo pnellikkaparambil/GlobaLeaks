@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "ანგარიშის დაფაილება"
 
@@ -551,9 +560,6 @@ msgstr "შექმნის თარიღი"
 
 msgid "Last access"
 msgstr "ბოლო შესვლა"
-
-msgid "Messages"
-msgstr "შეტყობინებები"
 
 msgid "Whistleblower's last access"
 msgstr "ინსტრუქტორის ბოლო წვდომა"
@@ -1000,8 +1006,8 @@ msgstr "საძიებო სისტემებში ინდექს�
 msgid "Default questionnaire"
 msgstr "ნაგულისხმევი კითხვარი"
 
-msgid "Show contexts in alphabetical order"
-msgstr "კონტექსტის ჩვენება ანბანის მიხედვით"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "დანართებისთვის ზომის ლიმიტი"
@@ -1453,11 +1459,11 @@ msgstr "ინსტრუქტორის ინტენტობაზე �
 msgid "Date of the request"
 msgstr "მოთხოვნის თარიღი"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ჩვენება"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "გილოცავთ!"

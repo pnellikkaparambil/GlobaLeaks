@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Бир доклат йолла"
 
@@ -551,9 +560,6 @@ msgstr "Қурулған чесла"
 
 msgid "Last access"
 msgstr "Ахирқи зийарәт"
-
-msgid "Messages"
-msgstr "Учурлар"
 
 msgid "Whistleblower's last access"
 msgstr "Паш қилғучиниң ахирқи зийарити"
@@ -1000,8 +1006,8 @@ msgstr "Ахтуруш маторлириниң индекислишини қо�
 msgid "Default questionnaire"
 msgstr "Көңүлдики рай синаш"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Мәзмунларни елипбә тәртипи бойичә көрсәт"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
@@ -1453,11 +1459,11 @@ msgstr "Сақлиғучи паш қилғучиниң кимлигини зий
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Көрсәт"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Тәбрикләймиз!"

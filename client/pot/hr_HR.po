@@ -515,6 +515,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Podnesite prijavu"
 
@@ -556,9 +565,6 @@ msgstr "Datum stvaranja"
 
 msgid "Last access"
 msgstr "Posljednji pristup"
-
-msgid "Messages"
-msgstr "Poruke"
 
 msgid "Whistleblower's last access"
 msgstr "Posljednji pristup zviždača"
@@ -1005,8 +1011,8 @@ msgstr "Omogući indeksiranje tražilica"
 msgid "Default questionnaire"
 msgstr "Zadani upitnik"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Prikaži kontekste u abecednom slijedu"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
@@ -1458,11 +1464,11 @@ msgstr "Od skrbnika se zahtjevao pristup identitetu zviždača."
 msgid "Date of the request"
 msgstr "Datum zahtjeva"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Pokaži"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"

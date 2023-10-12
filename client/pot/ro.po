@@ -526,6 +526,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Depune o sesizare"
 
@@ -567,9 +576,6 @@ msgstr "Data creării"
 
 msgid "Last access"
 msgstr "Ultima accesare"
-
-msgid "Messages"
-msgstr "Mesaje"
 
 msgid "Whistleblower's last access"
 msgstr "Ultima accesare de către avertizorul de integritate"
@@ -1016,8 +1022,8 @@ msgstr "Activează indexarea pentru motoarele de căutare"
 msgid "Default questionnaire"
 msgstr "Chestionar standard"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Afișează contextele în ordine alfabetică"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
@@ -1469,11 +1475,11 @@ msgstr "Accesul la identitatea avertizorului a fost solicitată custode."
 msgid "Date of the request"
 msgstr "Data solicitării"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Arată"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Felicitări!"

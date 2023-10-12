@@ -509,6 +509,21 @@ msgstr "Accessibility Declaration"
 msgid "Voice"
 msgstr "Voice"
 
+msgid "Everyone"
+msgstr "Everyone"
+
+msgid "Recipients only"
+msgstr "Recipients only"
+
+msgid "Only me"
+msgstr "Only me"
+
+msgid "Specify:"
+msgstr "Specify:"
+
+msgid "Would you like to provide us who you are?"
+msgstr "Would you like to provide us who you are?"
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -550,9 +565,6 @@ msgstr "Creation date"
 
 msgid "Last access"
 msgstr "Last access"
-
-msgid "Messages"
-msgstr "Messages"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblower's last access"
@@ -1007,8 +1019,8 @@ msgstr "Enable search engines indexing"
 msgid "Default questionnaire"
 msgstr "Default questionnaire"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Show contexts in alphabetical order"
+msgid "Show channels in alphabetical order"
+msgstr "Show channels in alphabetical order"
 
 msgid "Size limit for file attachments"
 msgstr "Size limit for file attachments"
@@ -1478,11 +1490,11 @@ msgstr "Access to the whistleblower's identity has been requested to the custodi
 msgid "Date of the request"
 msgstr "Date of the request"
 
-msgid "Subscription date"
-msgstr "Subscription date"
-
 msgid "Show"
 msgstr "Show"
+
+msgid "Subscription date"
+msgstr "Subscription date"
 
 msgid "Congratulations!"
 msgstr "Congratulations!"
