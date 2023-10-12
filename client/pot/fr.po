@@ -548,6 +548,15 @@ msgstr "Déclaration d’accessibilité"
 msgid "Voice"
 msgstr "Voix"
 
+msgid "Everyone"
+msgstr "Tout le monde"
+
+msgid "Recipients only"
+msgstr "Destinataires seulement"
+
+msgid "Only me"
+msgstr "Moi seulement"
+
 msgid "File a report"
 msgstr "Remplir un signalement"
 
@@ -589,9 +598,6 @@ msgstr "Date de création"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "Messages"
-msgstr "Messages"
 
 msgid "Whistleblower's last access"
 msgstr "Dernière connexion du lanceur d'alerte"
@@ -1038,8 +1044,8 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 msgid "Default questionnaire"
 msgstr "Questionnaire par défaut"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Afficher les contextes par ordre alphabétique"
+msgid "Show channels in alphabetical order"
+msgstr "Afficher les canaux par ordre alphabétique"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
@@ -1491,11 +1497,11 @@ msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au ga
 msgid "Date of the request"
 msgstr "Date de la demande"
 
-msgid "Subscription date"
-msgstr "Date d’abonnement"
-
 msgid "Show"
 msgstr "Afficher"
+
+msgid "Subscription date"
+msgstr "Date d’abonnement"
 
 msgid "Congratulations!"
 msgstr "Félicitations !"

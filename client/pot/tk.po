@@ -515,6 +515,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hasabat beriň"
 
@@ -556,9 +565,6 @@ msgstr "Döredilen senesi"
 
 msgid "Last access"
 msgstr "Iň soňky giriş"
-
-msgid "Messages"
-msgstr "Habarlar"
 
 msgid "Whistleblower's last access"
 msgstr "Gizlin habar yetirijiniň soňky girişi"
@@ -1005,8 +1011,8 @@ msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
 msgid "Default questionnaire"
 msgstr "Bellenen sowalnama"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mazmunlary elipbiý tertibinde görkeziň"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Faýl goşundylarynyň ululygy"
@@ -1458,11 +1464,11 @@ msgstr "Gözegçiden gizlin habar ýetirijiň şahsyýet hasabyna girmek üçin 
 msgid "Date of the request"
 msgstr "Haýyşyň senesi"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Görkez"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gutlaýarys!"

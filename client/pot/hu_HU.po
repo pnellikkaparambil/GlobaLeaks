@@ -528,6 +528,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 
@@ -569,9 +578,6 @@ msgstr "Létrehozás ideje"
 
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
-
-msgid "Messages"
-msgstr "Üzenetek"
 
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
@@ -1018,8 +1024,8 @@ msgstr "Keresőmotorok indexelésének engedélyezése"
 msgid "Default questionnaire"
 msgstr "Alap kérdőív"
 
-msgid "Show contexts in alphabetical order"
-msgstr "A kategóriák megjelenítése betűrendben"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
@@ -1471,11 +1477,11 @@ msgstr "A bejelentő identitásához való hozzáférés kérelmezve a gondnokna
 msgid "Date of the request"
 msgstr "A kérés dátuma"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mutat"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulálunk!"

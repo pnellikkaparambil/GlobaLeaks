@@ -1032,7 +1032,22 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return date.getTime() === 32503680000000;
     },
 
-    getPostponeDate: function(ttl) {
+    getMinPostponeDate: function(currentExpirationDate) {
+      var minDate = new Date();
+      minDate.setDate(minDate.getDate() + 90);
+      currentExpirationDate = new Date(currentExpirationDate);
+      return currentExpirationDate > minDate ? minDate : currentExpirationDate;
+    },
+
+    getPostponeDate: function(currentExpirationDate, ttl) {
+      var minPostponeDate = this.getMinPostponeDate(currentExpirationDate);
+      var date = new Date();
+      date.setDate(date.getDate() + ttl + 1);
+      date.setUTCHours(0, 0, 0, 0);
+      return date > minPostponeDate ? date : minPostponeDate;
+    },
+
+    getReminderDate: function(ttl) {
       var date = new Date();
       date.setDate(date.getDate() + ttl + 1);
       date.setUTCHours(0, 0, 0, 0);
@@ -1059,12 +1074,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         "arguments": [reason],
         "code": 10
       };
-    },
-
-    load: function(url) {
-      return new TokenResource().$get().then(function(token) {
-        return url + "?token=" + token.id + ":" + token.answer;
-      });
     },
 
     download: function(url) {
@@ -1296,7 +1305,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return this.runOperation("api/recipient/operations", operation, args, refresh);
     },
 
-    removeFile: function (submission, list, file) {
+    removeFile: function (submission, entry, list, file) {
+      entry.files = entry.files.filter(e => e !== file.uniqueIdentifier);
+
       for (var i = list.length - 1; i >= 0; i--) {
         if (list[i] === file) {
           list.splice(i, 1);
@@ -1319,31 +1330,6 @@ factory("mediaProcessor", [function () {
         });
       }
     },
-
-    createHighPassFilter:function (audioContext) {
-      const filter = audioContext.createBiquadFilter();
-      filter.type = "highpass";
-      filter.frequency.value = 300;
-      return filter;
-    },
-
-    createLowPassFilter:function (audioContext) {
-      const filter = audioContext.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.value = 3000;
-      return filter;
-    },
-
-    createDynamicCompressor: function(audioContext) {
-      var compressor = audioContext.createDynamicsCompressor();
-      compressor.threshold.value = -50;
-      compressor.knee.value = 40;
-      compressor.ratio.value = 12;
-      compressor.reduction.value = -20;
-      compressor.attack.value = 0;
-      compressor.release.value = 0.25;
-      return compressor;
-    }
   };
 }]).
 factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $http, CONSTANTS) {

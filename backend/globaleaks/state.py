@@ -113,7 +113,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
     def get_agent(self):
         if 1 not in self.tenants or self.tenants[1].cache.anonymize_outgoing_connections:
-            return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
+            return get_tor_agent(self.settings.socks_port)
 
         return get_web_agent()
 
@@ -157,7 +157,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         fail.args[0], fail.args[1])
                 continue
 
-            if port in [443, 8443]:
+            if port == 8443:
                 self.https_socks += [sock]
             else:
                 self.http_socks += [sock]
@@ -170,7 +170,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         fail.args[0], fail.args[1])
                 continue
 
-            if port in [443, 8443]:
+            if port == 8443:
                 self.https_socks += [sock]
             else:
                 self.http_socks += [sock]
@@ -204,7 +204,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.tenants[tid].cache.name + ' - ' + subject,
                         body,
                         self.tenants[1].cache.anonymize_outgoing_connections,
-                        self.settings.socks_host,
                         self.settings.socks_port)
 
     def schedule_support_email(self, tid, text):

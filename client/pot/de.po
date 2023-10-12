@@ -554,7 +554,16 @@ msgid "Accessibility Declaration"
 msgstr ""
 
 msgid "Voice"
-msgstr ""
+msgstr "Stimme"
+
+msgid "Everyone"
+msgstr "Jeder"
+
+msgid "Recipients only"
+msgstr "Nur Empfänger"
+
+msgid "Only me"
+msgstr "Nur ich"
 
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
@@ -597,9 +606,6 @@ msgstr "Erstellungsdatum"
 
 msgid "Last access"
 msgstr "Letzter Zugriff"
-
-msgid "Messages"
-msgstr "Mitteilungen"
 
 msgid "Whistleblower's last access"
 msgstr "Letzer Zugriff des Hinweisgebers"
@@ -1046,8 +1052,8 @@ msgstr "Suchmaschinenindizierung aktivieren"
 msgid "Default questionnaire"
 msgstr "Standardfragebogen"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Kontexte in alphabetischer Reihenfolge anzeigen"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
@@ -1499,11 +1505,11 @@ msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefo
 msgid "Date of the request"
 msgstr "Datum der Anfrage"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Anzeigen"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Glückwunsch!"

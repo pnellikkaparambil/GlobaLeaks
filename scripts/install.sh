@@ -38,6 +38,7 @@ function DO () {
 
 LOGFILE="./install.log"
 ASSUMEYES=0
+DISABLEAUTOSTART=0
 
 DISTRO="unknown"
 DISTRO_CODENAME="unknown"
@@ -77,12 +78,15 @@ usage() {
   echo "Valid options:"
   echo -e " -h show the script helper"
   echo -e " -y assume yes"
+  echo -e " -n disable autostart"
   echo -e " -v install a specific software version"
 }
 
-while getopts "hyv:" opt; do
+while getopts "ynvh:" opt; do
   case $opt in
     y) ASSUMEYES=1
+    ;;
+    n) DISABLEAUTOSTART=1
     ;;
     v) VERSION="$OPTARG"
     ;;
@@ -109,8 +113,8 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^bookworm$" ; then
   prompt_for_continuation
 fi
 
-if [ -f /etc/init.d/globaleaks ]; then
-  DO "/etc/init.d/globaleaks stop"
+if [ -f /etc/systemd/system/globaleaks.service ]; then
+  DO "systemctl stop globaleaks"
 fi
 
 # align apt-get cache to up-to-date state on configured repositories
@@ -143,11 +147,11 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or Buster as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bullseye|buster|focal|jammy)$"; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bookworm|bullseye|buster|focal|jammy)$"; then
   # In case of unsupported platforms we fallback on Bullseye
   echo "No packages available for the current distribution; the install script will use the Buster repository."
   DISTRO="Debian"
-  DISTRO_CODENAME="bullseye"
+  DISTRO_CODENAME="bookworm"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
@@ -163,6 +167,10 @@ fi
 
 echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
 echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+
+if [ $DISABLEAUTOSTART -eq 1 ]; then
+  systemctl mask globaleaks
+fi
 
 if [ -d /globaleaks/deb ]; then
   DO "apt-get -y update"
@@ -184,6 +192,10 @@ else
   fi
 fi
 
+if [ $DISABLEAUTOSTART -eq 1 ]; then
+  exit 0
+fi
+
 # Set the script to its success condition
 last_command "startup"
 last_status "0"
@@ -193,15 +205,15 @@ sleep 5
 i=0
 while [ $i -lt 30 ]
 do
-  X=$(netstat -tln | grep "127.0.0.1:8082")
+  X=$(netstat -tln | grep ":8443")
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "GlobaLeaks setup completed."
     TOR=$(gl-admin getvar onionservice)
     echo "To proceed with the configuration you could now access the platform wizard at:"
     echo "+ http://$TOR (via the Tor Browser)"
-    echo "+ http://127.0.0.1:8082"
-    echo "+ http://0.0.0.0"
+    echo "+ https://127.0.0.1:8443"
+    echo "+ https://0.0.0.0"
     echo "We recommend you to to perform the wizard by using Tor address or on localhost via a VPN."
     exit 0
   fi
@@ -211,5 +223,7 @@ done
 
 #ERROR
 echo "Ouch! The installation is complete but GlobaLeaks failed to start."
+netstat -tln
+cat /var/globaleaks/log/globaleaks.log
 last_status "1"
 exit 1

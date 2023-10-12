@@ -516,6 +516,15 @@ msgstr "Izjava o dostopnosti"
 msgid "Voice"
 msgstr "Glas"
 
+msgid "Everyone"
+msgstr "Vsi"
+
+msgid "Recipients only"
+msgstr "Samo prejemniki"
+
+msgid "Only me"
+msgstr "Samo jaz"
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 
@@ -557,9 +566,6 @@ msgstr "Datum vnosa"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
-
-msgid "Messages"
-msgstr "Sporočila"
 
 msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
@@ -1006,8 +1012,8 @@ msgstr "Omogoči indeksiranje iskalnikom"
 msgid "Default questionnaire"
 msgstr "Privzeti vprašalnik"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Prikaz kontekstov v abecednem vrstnem redu"
+msgid "Show channels in alphabetical order"
+msgstr "Prikaži kanale po abecednem redu"
 
 msgid "Size limit for file attachments"
 msgstr "Omejitev velikosti datotek v prilogah"
@@ -1459,11 +1465,11 @@ msgstr "Zahtevek za dostop do identitete prijavitelja je bil posredovan skrbniku
 msgid "Date of the request"
 msgstr "Datum zahtevka"
 
-msgid "Subscription date"
-msgstr "Datum naročnine"
-
 msgid "Show"
 msgstr "Pokaži"
+
+msgid "Subscription date"
+msgstr "Datum naročnine"
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"

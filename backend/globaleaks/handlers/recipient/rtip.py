@@ -3,6 +3,7 @@
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
 import os
+import time
 
 from datetime import datetime, timedelta
 
@@ -89,7 +90,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     new_rtip.new = False
     if itip.deprecated_crypto_files_pub_key:
         _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.deprecated_crypto_files_prv_key))
-        new_rtip.deprecated_crypto_files_prv_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
+        new_rtip.deprecated_crypto_files_prv_key = base64.b64encode(GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key))
 
     wbfiles = session.query(models.WhistleblowerFile) \
                     .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
@@ -360,22 +361,21 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
+    max_date = time.time() + 3651 *  86400
+    max_date = max_date - max_date % 86400
     expiration_date = expiration_date / 1000
-    expiration_date = min(expiration_date, 32503680000)
+    expiration_date = expiration_date if expiration_date < max_date else max_date
     expiration_date = datetime.utcfromtimestamp(expiration_date)
 
-    context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
+    min_date = time.time() + 91 * 86400
+    min_date = min_date - min_date % 86400
+    min_date = datetime.utcfromtimestamp(min_date)
+    if itip.expiration_date <= min_date:
+        min_date = itip.expiration_date
 
-    if context.tip_timetolive > 0:
-        max_expiration_date = get_expiration(max(365, context.tip_timetolive * 2))
-    else:
-        max_expiration_date = datetime_never()
-
-    if expiration_date > max_expiration_date:
-        expiration_date = max_expiration_date
-
-    if expiration_date > itip.expiration_date:
+    if expiration_date >= min_date:
         itip.expiration_date = expiration_date
+
 
 def db_set_reminder(session, itip, reminder_date):
     """
@@ -722,35 +722,34 @@ class WhistleblowerFileDownload(BaseHandler):
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key))
-
-            if tip_prv_key2:
-                files_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key2))
-            else:
-                files_prv_key = tip_prv_key
-
             name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
 
-            filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+            try:
+                # First attempt
+                filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            except:
+                # Second attempt
+                if not tip_prv_key2:
+                    raise
+
+                files_prv_key2 = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key2))
+                filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key2, filelocation)
 
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
-class ReceiverFileHandler(BaseHandler):
+class ReceiverFileUpload(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
     """
     check_roles = 'receiver'
     upload_handler = True
 
-    @inlineCallbacks
     def post(self, rtip_id):
-        yield register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
-
-        log.debug("Recorded new ReceiverFile %s",
-                  self.uploaded_file['name'])
+        return register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
 
 
-class RTipWBFileHandler(BaseHandler):
+class ReceiverFileDownload(BaseHandler):
     """
     This handler lets the recipient download and delete rfiles, which are files
     intended for delivery to the whistleblower.
@@ -760,22 +759,19 @@ class RTipWBFileHandler(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, wbtip, pgp_key = db_get(session,
-                                        (models.ReceiverFile,
-                                         models.InternalTip,
-                                         models.User.pgp_key_public),
-                                        (models.User.id == user_id,
-                                         models.User.id == models.ReceiverTip.receiver_id,
-                                         models.ReceiverFile.id == file_id,
-                                         models.ReceiverFile.internaltip_id == models.InternalTip.id))
-
-        rtip = session.query(models.ReceiverTip) \
-                      .filter(models.ReceiverTip.receiver_id == self.session.user_id,
-                              models.ReceiverTip.internaltip_id == wbtip.id).one_or_none()
-        if not rtip:
+        try:
+            rfile, rtip, pgp_key = db_get(session,
+                                          (models.ReceiverFile,
+                                           models.ReceiverTip,
+                                           models.User.pgp_key_public),
+                                          (models.User.id == user_id,
+                                           models.User.id == models.ReceiverTip.receiver_id,
+                                           models.ReceiverFile.id == file_id,
+                                           models.ReceiverFile.internaltip_id == models.ReceiverTip.internaltip_id))
+        except:
             raise errors.ResourceNotFound
-
-        return rfile.name, rfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        else:
+            return rfile.name, rfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):

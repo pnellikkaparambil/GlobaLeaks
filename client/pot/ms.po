@@ -510,6 +510,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Failkan laporan"
 
@@ -551,9 +560,6 @@ msgstr "Tarikh penciptaan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "Messages"
-msgstr "Mesej"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir pemberi maklumat"
@@ -1000,8 +1006,8 @@ msgstr "Dayakan pengindeksan enjin carian"
 msgid "Default questionnaire"
 msgstr "Soal selidik lalai"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Tunjukkan konteks dalam susunan abjad"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Had saiz untuk lampiran fail"
@@ -1453,11 +1459,11 @@ msgstr "Akses kepada identiti pemberi maklumat telah diminta kepada penjaga."
 msgid "Date of the request"
 msgstr "Tarikh permintaan"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Tunjukkan"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Tahniah!"

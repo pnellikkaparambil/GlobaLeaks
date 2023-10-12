@@ -512,6 +512,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Поднеси извештај"
 
@@ -553,9 +562,6 @@ msgstr "Датум на создавање"
 
 msgid "Last access"
 msgstr "Последен пристап"
-
-msgid "Messages"
-msgstr "Пораки"
 
 msgid "Whistleblower's last access"
 msgstr "Последен пристап на свиркачот"
@@ -1002,8 +1008,8 @@ msgstr "Овозможи индексирање на пребарувачите"
 msgid "Default questionnaire"
 msgstr "Стандарден прашалник"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Покажи ги содржините по азбучен ред"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Граница за големина на датотека за прилог"
@@ -1455,11 +1461,11 @@ msgstr "Од чуварот беше побаран пристап до иден
 msgid "Date of the request"
 msgstr "Датум на барањето"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Покажи"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Честитки!"

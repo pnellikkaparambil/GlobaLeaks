@@ -528,6 +528,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Aurkeztu salaketa."
 
@@ -569,9 +578,6 @@ msgstr "Sortze-data"
 
 msgid "Last access"
 msgstr "Azken sarrera"
-
-msgid "Messages"
-msgstr "Mezuak"
 
 msgid "Whistleblower's last access"
 msgstr "Salatzailearen azken sarrera"
@@ -1018,8 +1024,8 @@ msgstr "Gaitu bilaketa motorren indexazioa "
 msgid "Default questionnaire"
 msgstr "Galdekizun lehenetsia"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Testuinguruak ordena alfabetikoan erakutsi"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Erantsitako fitxategientzako gehienezko tamaina"
@@ -1471,11 +1477,11 @@ msgstr "Salatzailearen identitatera sarbidea eskatu zaio jagoleari."
 msgid "Date of the request"
 msgstr "Eskakizunaren data"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Erakutsi"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Zorionak!"

@@ -522,6 +522,15 @@ msgstr ""
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "رپورٹ درج کروائیں۔"
 
@@ -563,9 +572,6 @@ msgstr "تاریخِ تخلیق"
 
 msgid "Last access"
 msgstr "آخری رسائی"
-
-msgid "Messages"
-msgstr "پیغامات"
 
 msgid "Whistleblower's last access"
 msgstr "مخبر کی آخری رسائی "
@@ -1012,8 +1018,8 @@ msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 msgid "Default questionnaire"
 msgstr "پہلے سے طے شدہ سوالنامہ "
 
-msgid "Show contexts in alphabetical order"
-msgstr "الفبائی ترتیب میں سیاق و سباق دکھائیں"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
@@ -1465,11 +1471,11 @@ msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی در
 msgid "Date of the request"
 msgstr "درخواست کی تاریخ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "دکھائیے"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "مبارک ہو!"
