@@ -322,7 +322,6 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
-        rtip.access_count += 1
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 

@@ -85,6 +85,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
 
     itip.wb_last_access = datetime_now()
     itip.tor = itip.tor and client_using_tor
+    itip.access_count += 1
 
     crypto_prv_key = ''
     if itip.crypto_pub_key:
