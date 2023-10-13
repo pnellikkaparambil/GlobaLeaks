@@ -319,8 +319,6 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
-    # TODO incrementare contatore visite alla segnalazione
-
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
