@@ -844,7 +844,7 @@ class _SubmissionStatus(Model):
     tid = Column(Integer, primary_key=True, default=1)
     label = Column(JSON, default=dict, nullable=False)
     order = Column(Integer, default=0, nullable=False)
-    #tip_timetolive = Column(Integer, default=0, nullable=False)
+    tip_timetolive = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
     int_keys = ['order', 'tip_timetolive']
@@ -866,7 +866,7 @@ class _SubmissionSubStatus(Model):
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     order = Column(Integer, default=0, nullable=False)
-    #tip_timetolive = Column(Integer, default=0, nullable=False)
+    tip_timetolive = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
     int_keys = ['order', 'tip_timetolive']
