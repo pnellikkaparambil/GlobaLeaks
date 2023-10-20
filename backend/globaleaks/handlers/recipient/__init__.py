@@ -58,6 +58,12 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
+    # Retrieve all the contexts associated with the current receiver
+    receiver_contexts = []
+    for context_id in session.query(models.ReceiverContext.context_id) \
+                             .filter(models.ReceiverContext.receiver_id == receiver_id):
+        receiver_contexts.append(context_id)
+
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
                                                    models.InternalTip,
@@ -67,18 +73,16 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                   and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
                                                        models.InternalTipData.key == 'whistleblower_identity'),
                                                   isouter=True) \
-                                            .join(models.ReceiverContext,
-                                                  and_(models.ReceiverContext.receiver_id == receiver_id,
-                                                       models.ReceiverContext.context_id == models.InternalTip.context_id)) \
-                                            .filter(models.InternalTip.update_date >= updated_after,
+                                            .filter(models.InternalTip.context_id in receiver_contexts,
+                                                    models.InternalTip.update_date >= updated_after,
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                     models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
                                             .group_by(models.ReceiverTip.id):
         answers = answers.answers
         label = itip.label
-        is_accessible = rtip.receiver_id == receiver_id
-        if itip.crypto_tip_pub_key and is_accessible:
+        accessible = rtip.receiver_id == receiver_id
+        if itip.crypto_tip_pub_key and accessible:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
 
             if label:
@@ -119,7 +123,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'file_count': files_by_itip.get(itip.id, 0),
             'comment_count': comments_by_itip.get(itip.id, 0),
             'subscription': subscription,
-            'is_accessible': is_accessible,
+            'accessible': accessible,
         })
 
     return ret
