@@ -68,7 +68,6 @@
     </span>
   </div>
 </div>
-
 <div id="TipList" class="row mt-2">
   <div class="col-md-12 table-responsive">
     <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
@@ -167,6 +166,16 @@
             </span>
             <span data-date-range-picker data-ng-model="expiryDateModel" data-on-date-change="onExpiryFilterChange"></span>
           </th>
+          <th class="TipInfoNumReceipt">
+            <span data-ng-click="sortKey = 'num_receivers'; sortReverse = !sortReverse">
+              <i class="fa-solid fa-circle"></i>
+              <span data-translate>Number rec</span>
+              <span data-ng-show="sortKey == 'num_receivers'">
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+              </span>
+            </span>
+          </th>
           <th class="TipInfoReadReceipt"><i class="fa-solid fa-envelope-circle-check"></i></th>
           <th class="TipInfoComments"><i class="fa-solid fa-comment"></i></th>
           <th class="TipInfoFiles"><i class="fa-solid fa-file"></i></th>
@@ -226,6 +235,7 @@
                 data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
             <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
           </td>
+          <td class="TipInfoNumReceipt">{{tip.num_receivers}}</td>
           <td class="TipInfoLastAccess">
             <i data-ng-if="tip.last_access >= tip.update_date" class="fa-solid fa-check"
                data-uib-tooltip="{{'The whistleblower has already read the last update' | translate}} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
