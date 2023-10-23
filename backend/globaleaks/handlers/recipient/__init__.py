@@ -59,10 +59,11 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         files_by_itip[itip_id] = count
 
     # Retrieve all the contexts associated with the current receiver
-    receiver_contexts = []
+    receiver_contexts = set()
     for context_id in session.query(models.ReceiverContext.context_id) \
                              .filter(models.ReceiverContext.receiver_id == receiver_id):
-        receiver_contexts.append(context_id)
+        receiver_contexts.add(context_id[0])
+
 
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
@@ -73,7 +74,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                   and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
                                                        models.InternalTipData.key == 'whistleblower_identity'),
                                                   isouter=True) \
-                                            .filter(models.InternalTip.context_id in receiver_contexts,
+                                            .filter(models.InternalTip.context_id.in_(receiver_contexts),
                                                     models.InternalTip.update_date >= updated_after,
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
