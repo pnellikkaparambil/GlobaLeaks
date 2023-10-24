@@ -182,7 +182,7 @@ def is_coordinator(session, user_id, context_id):
 
     :param session: An ORM session
     :param user_id: A user ID
-    :param context_id: A context ID
+    :param context_id: The context ID of a tip
     """
 
     # A receiver is a coordinator of a context if and only if:
@@ -190,16 +190,16 @@ def is_coordinator(session, user_id, context_id):
     #     2. they are the only receiver within the context
 
     can_transfer_access = session.query(models.User.can_transfer_access_to_reports) \
-                                 .filter(models.User.id == user_id).one()
+                                 .filter(models.User.id == user_id).one()[0]
 
     if not can_transfer_access:
         return False # condition 1 check failed
 
-    receivers_in_context = session.query(models.ReceiverContext.receiver_id) \
-                                  .filter(models.ReceiverContext.context_id == context_id)
+    receivers_in_context = iter(session.query(models.ReceiverContext.receiver_id) \
+                                       .filter(models.ReceiverContext.context_id == context_id))
     receiver = None
     try:
-        receiver = next(receivers_in_context)
+        receiver = next(receivers_in_context)[0]
     except StopIteration:
         return False # no coordinator for that context, condition 2 check failed
 
@@ -221,10 +221,10 @@ def context_from_itip(session, itip):
     :param itip: The ID of the submission
     """
 
-    return session.query(models.InternalTip.context_id).filter(models.InternalTip.id == itip).one()
+    return session.query(models.InternalTip.context_id).filter(models.InternalTip.id == itip).one()[0]
 
 
-def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason):
     """
     Transaction for registering a change of status of a submission
 
@@ -238,22 +238,26 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if status_id == 'new':
         return
 
-    if itip.status == 'closed' and not is_coordinator(session, user_id, context_from_itip(session, itip)):
-        raise errors.ForbiddenOperation
+    if itip.status == 'closed' and not is_coordinator(session, user_id, context_from_itip(session, itip.id)):
+        raise errors.ForbiddenOperation # only coordinators can restore closed tips
+
+    if itip.status == 'closed' and reason is None:
+        raise errors.ForbiddenOperation # reason must be given when restoring closed tips
 
     itip.status = status_id
     itip.substatus = substatus_id or None
 
     log_data = {
       'status': itip.status,
-      'substatus': itip.substatus
+      'substatus': itip.substatus,
+      'reason': reason,
     }
 
     db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
-def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id):
+def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id, reason):
     """
     Transaction for registering a change of status of a submission
 
@@ -269,7 +273,7 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
 
-    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
+    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason)
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
@@ -368,7 +372,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None, None)
 
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():
@@ -712,7 +716,7 @@ class RTipInstance(OperationHandler):
 
     def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,
-                                            req_args['status'], req_args['substatus'])
+                                            req_args['status'], req_args['substatus'], req_args.get('reason'))
 
     def delete(self, rtip_id):
         """
