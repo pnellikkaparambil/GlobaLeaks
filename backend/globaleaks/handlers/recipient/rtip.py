@@ -176,6 +176,54 @@ def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
+def is_coordinator(session, user_id, context_id):
+    """
+    Transaction for checking if a user is a coordinator of a context
+
+    :param session: An ORM session
+    :param user_id: A user ID
+    :param context_id: A context ID
+    """
+
+    # A receiver is a coordinator of a context if and only if:
+    #     1. they can transfer the report access
+    #     2. they are the only receiver within the context
+
+    can_transfer_access = session.query(models.User.can_transfer_access_to_reports) \
+                                 .filter(models.User.id == user_id).one()
+
+    if not can_transfer_access:
+        return False # condition 1 check failed
+
+    receivers_in_context = session.query(models.ReceiverContext.receiver_id) \
+                                  .filter(models.ReceiverContext.context_id == context_id)
+    receiver = None
+    try:
+        receiver = next(receivers_in_context)
+    except StopIteration:
+        return False # no coordinator for that context, condition 2 check failed
+
+    if receiver != user_id:
+        return False # the receiver found in the context is different, condition 2 check failed
+
+    try:
+        next(receivers_in_context)
+    except StopIteration:
+        return True # condition 1 and 2 check success
+
+    return False # more than one receiver in that context, condition 2 check failed
+
+def context_from_itip(session, itip):
+    """
+    Transaction for retrieving the internal tip context
+
+    :param session: An ORM session
+    :param itip: The ID of the submission
+    """
+
+    return session.query(models.InternalTip.context_id).filter(models.InternalTip.id == itip).one()
+
+
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
     """
     Transaction for registering a change of status of a submission
@@ -189,6 +237,9 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     """
     if status_id == 'new':
         return
+
+    if itip.status == 'closed' and not is_coordinator(session, user_id, context_from_itip(session, itip)):
+        raise errors.ForbiddenOperation
 
     itip.status = status_id
     itip.substatus = substatus_id or None
