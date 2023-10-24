@@ -8,7 +8,8 @@
       </button>
     </span>
   </div>
-  <div id="SubstatusAddBox" data-ng-controller="AdminSubmissionSubStatusAddCtrl" class="row" data-ng-if="showAddSubstatus">
+  <div id="SubstatusAddBox" data-ng-controller="AdminSubmissionSubStatusAddCtrl" class="row"
+    data-ng-if="showAddSubstatus">
     <div class="col-md-6">
       <div data-ng-form="newSubstatus">
         <div class="row">
@@ -26,7 +27,7 @@
           <div class="col-md-12">
             <div class="form-group clearfix">
               <button class="float-left btn btn-primary" data-ng-disabled="newSubstatus.$invalid"
-                      data-ng-click="addSubmissionSubStatus(); toggleAddSubstatus()">
+                data-ng-click="addSubmissionSubStatus(); toggleAddSubstatus()">
                 <i class="fa-solid fa-plus"></i>
                 <span data-translate>Add</span>
               </button>
@@ -46,41 +47,66 @@
             </span>
             <span class="col-md-5 clearfix">
               <span class="float-right">
-                <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveSsUp($event, $index)" data-uib-tooltip="{{'Move up' | translate}}">
+                <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveSsUp($event, $index)"
+                  data-uib-tooltip="{{'Move up' | translate}}">
                   <i class="fa-solid fa-chevron-up"></i>
                 </button>
-                <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveSsDown($event, $index)" data-uib-tooltip="{{'Move down' | translate}}">
+                <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveSsDown($event, $index)"
+                  data-uib-tooltip="{{'Move down' | translate}}">
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" data-ng-show="!substatus_editing"
-                        data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
+                  data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
                 <button class="btn btn-sm btn-primary" data-ng-show="substatus_editing"
-                        data-ng-click="save_submissions_substatuses(substatus);">
+                  data-ng-click="save_submissions_substatuses(substatus);">
                   <span data-translate>Save</span>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" data-ng-show="substatus_editing"
-                        data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
+                  data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
                 <button class="btn btn-sm btn-danger"
-                        data-ng-click="deleteSubSubmissionStatus(substatus); $event.stopPropagation();">
+                  data-ng-click="deleteSubSubmissionStatus(substatus); $event.stopPropagation();">
                   <span data-translate>Delete</span>
                 </button>
               </span>
             </span>
           </div>
           <div data-ng-form="editStep" data-ng-if="substatus_editing">
-            <hr/>
-            <div class="row">
+            <hr />
+            <!-- <div class="row">
               <div class="form-group">
                 <div class="col-md-6">
                   <label data-translate>Label</label>
                   <input class="form-control" data-ng-model="substatus.label" type="text" required/>
                 </div>
               </div>
+            </div> -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label data-translate>Label</label>
+                  <input class="form-control" data-ng-model="substatus.label" type="text" required />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label data-translate>Scadenza (giorni)</label>
+                  <select class="form-control" data-ng-model="substatus.selectedOption" data-ng-change="test123()">
+                    <option value="-1">Disabilitata</option>
+                    <option value="0">Illimitata</option>
+                    <option value="1">Personalizzata</option>
+                  </select>
+                  <input class="form-control mt-2" data-ng-model="substatus.retentionDays" type="number" required
+                    data-ng-if="substatus.selectedOption === '1'" />
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
