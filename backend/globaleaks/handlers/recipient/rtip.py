@@ -224,7 +224,7 @@ def context_from_itip(session, itip):
     return session.query(models.InternalTip.context_id).filter(models.InternalTip.id == itip).one()[0]
 
 
-def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason):
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason=None):
     """
     Transaction for registering a change of status of a submission
 
@@ -372,7 +372,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None, None)
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():

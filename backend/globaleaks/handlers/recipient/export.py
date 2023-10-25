@@ -61,7 +61,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         rtip.access_date = rtip.last_access
 
     if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None, None)
 
     return user.pgp_key_public, serialize_rtip_export(session, user, itip, rtip, context, language)
 
