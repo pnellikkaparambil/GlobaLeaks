@@ -43,7 +43,8 @@ class SubmissionStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
         # Create a submission status
         data_request = {
             'label': 'test_status',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 12,
         }
 
         handler = self.request(data_request, role='admin')
@@ -84,7 +85,8 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
         data_request = {
             'label': 'test_status',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 12,
         }
         handler = self.request(data_request, role='admin')
 
@@ -104,7 +106,8 @@ class SubmissionStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
         # Change the submission status info
         data_request = {
             'label': '12345',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 12,
         }
 
         self._handler = submission_statuses.SubmissionStatusInstance
@@ -177,7 +180,8 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         data_request = {
             'label': '12345',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 12,
         }
         handler = self.request(data_request, role='admin')
         yield handler.post(u'new')
@@ -201,7 +205,8 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
         data_request = {
             'label': '12345',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 12,
         }
 
         handler = self.request(data_request, role='admin')
