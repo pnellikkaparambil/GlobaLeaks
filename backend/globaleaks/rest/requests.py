@@ -566,5 +566,6 @@ SubmissionStatusDesc = {
 
 SubmissionSubStatusDesc = {
     'label': str,
-    'order': int
+    'order': int,
+    'tip_timetolive': int,
 }
