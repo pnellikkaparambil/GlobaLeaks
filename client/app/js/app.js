@@ -21,7 +21,8 @@ var GL = angular.module("GL", [
     "ngCsv",
     "ngResource",
     "ngSanitize",
-    "ng-showdown"
+    "ng-showdown",
+    "chart.js"
 ]).
   config(["$ariaProvider", function($ariaProvider) {
     $ariaProvider.config({ariaInvalid: false});
@@ -348,6 +349,26 @@ var GL = angular.module("GL", [
         resolve: {
           access: requireAuth("custodian"),
           resources: fetchResources("custodian", ["iars", "preferences"])
+        }
+      }).
+      when("/analytics/home", {
+        templateUrl: "views/analytics/home.html",
+        controller: "HomeCtrl",
+        header_title: "Home",
+        sidebar: "views/analytics/sidebar.html",
+        resolve: {
+          //access: requireAuth("analyst"),
+          //resources: fetchResources("analyst", ["node", "preferences"])
+        }
+      }).
+      when("/analytics/statistics", {
+        templateUrl: "views/analytics/statistics.html",
+        controller: "StatisticsCtrl",
+        header_title: "Statistics",
+        sidebar: "views/analytics/sidebar.html",
+        resolve: {
+          //access: requireAuth("analyst"),
+          //resources: fetchResources("analyst", ["node", "preferences"])
         }
       }).
       when("/login", {

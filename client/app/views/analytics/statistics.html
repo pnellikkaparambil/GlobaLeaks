@@ -1,0 +1,15 @@
+<div class="row chart-spacer" >
+  <div class="card" data-ng-repeat="c in charts" data-ng-if="!error">
+    <div class="card-header">
+      {{c.title}}
+    </div>
+    <div class="card-body">
+      <canvas class="chart chart-pie" chart-data="c.values" chart-labels="c.labels" chart-options="options"></canvas>
+    </div>
+  </div>
+  <div data-ng-if="error">
+    <span>
+      Errore imprevisto.
+    </span>
+  </div>
+</div>
