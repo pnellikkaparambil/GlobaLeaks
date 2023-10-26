@@ -106,11 +106,14 @@ GL.controller("TipCtrl",
         controller: "ConfirmableModalCtrl",
         resolve: {
           arg: {
-            motivazione: "",
+            reason: "",
           },
           confirmFun: function () {
-            return function (res) {
-              console.log("r",res)
+            return function (reason) {
+              $scope.tip.status = "opened";
+              $scope.tip.substatus = null;
+              $scope.tip.reason = reason;
+              $scope.updateSubmissionStatus();
             };
           },
           cancelFun: null
@@ -131,6 +134,7 @@ GL.controller("TipCtrl",
             return function (tip) {
               $scope.tip.status = tip.status;
               $scope.tip.substatus = tip.substatus;
+              $scope.tip.reason = tip.reason;
               $scope.updateSubmissionStatus();
             };
           },
