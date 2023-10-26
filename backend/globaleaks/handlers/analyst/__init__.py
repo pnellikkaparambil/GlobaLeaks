@@ -39,12 +39,12 @@ def get_stats(session, tid, user_id, user_cc, operation, args):
 
     return {
             # access percentages
-            "percentage_no_access": num_tips_no_access/num_tips,
-            "percentage_at_least_one_access": num_tips_at_least_one_access/num_tips,
+            "no_access": {"label": "Accessi senza ricevuta", "value": num_tips_no_access},
+            "at_least_one_access": {"label": "Accessi tramite ricevuta", "value": num_tips_at_least_one_access},
             # subscriptions percentages
-            "percentage_anonymous_tips": num_anonymous_tips/num_tips,
-            "percentage_subscribed_tips": num_subscribed_tips/num_tips,
-            "percentage_subscribed_later_tips": num_subscribed_later_tips/num_tips,
+            "anonymous_tips": {"label": "Anonime", "value": num_anonymous_tips},
+            "subscribed_tips": {"label": "Sottoscritte", "value": num_subscribed_tips},
+            "subscribed_later_tips": {"label": "Sottoscritte in secondo momento", "value": num_subscribed_later_tips},
     }
 
 class GetStats(BaseHandler):
