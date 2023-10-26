@@ -176,53 +176,60 @@ def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
-def is_coordinator(session, user_id, context_id):
+def get_tip_ttl(session, orm_object, orm_object_id):
     """
-    Transaction for checking if a user is a coordinator of a context
+    Transaction for retrieving the data retention
 
     :param session: An ORM session
-    :param user_id: A user ID
-    :param context_id: The context ID of a tip
+    :param orm_object: An ORM object
+    :param orm_object_id: The ORM object id
     """
+    # we exploit the fact that we have the same "tip_timetolive" name in
+    # the SubmissionSubStatus, SubmissionStatus and Context tables
+    return session.query(orm_object.tip_timetolive) \
+                  .filter(orm_object.id == orm_object_id).one()[0]
 
-    # A receiver is a coordinator of a context if and only if:
-    #     1. they can transfer the report access
-    #     2. they are the only receiver within the context
 
-    can_transfer_access = session.query(models.User.can_transfer_access_to_reports) \
-                                 .filter(models.User.id == user_id).one()[0]
-
-    if not can_transfer_access:
-        return False # condition 1 check failed
-
-    receivers_in_context = iter(session.query(models.ReceiverContext.receiver_id) \
-                                       .filter(models.ReceiverContext.context_id == context_id))
-    receiver = None
-    try:
-        receiver = next(receivers_in_context)[0]
-    except StopIteration:
-        return False # no coordinator for that context, condition 2 check failed
-
-    if receiver != user_id:
-        return False # the receiver found in the context is different, condition 2 check failed
-
-    try:
-        next(receivers_in_context)
-    except StopIteration:
-        return True # condition 1 and 2 check success
-
-    return False # more than one receiver in that context, condition 2 check failed
-
-def context_from_itip(session, itip):
+def recalculate_data_retention(session, itip, report_restore_request):
     """
-    Transaction for retrieving the internal tip context
+    Transaction for recaulating the data retention after a status change
 
     :param session: An ORM session
-    :param itip: The ID of the submission
+    :param itip: The internaltip ORM object
+    :param report_restore_request: boolean value, true if the report is being restored
     """
+    new_retention = None
+    if report_restore_request:
+        # use the context-defined data retention
+        new_retention = get_tip_ttl(session, models.Context, itip.context_id)
+        if new_retention <= 0:
+            new_retention = None
+    elif itip.status == "closed":
+        # check the substatus, status and context for a data retention
+        substatus = 0
+        status = 1
+        context = 2
+        for to_check in (substatus, status, context):
+            if to_check == substatus:
+                if itip.substatus is not None:
+                    new_retention = get_tip_ttl(session, models.SubmissionSubStatus, itip.substatus)
+            elif to_check == status:
+                new_retention = get_tip_ttl(session, models.SubmissionStatus, itip.status)
+            else: # to_check == context:
+                new_retention = get_tip_ttl(session, models.Context, itip.context_id)
 
-    return session.query(models.InternalTip.context_id).filter(models.InternalTip.id == itip).one()[0]
+            if new_retention == -1:
+                # infinite data retention, break from the for loop
+                new_retention = None
+                break
+    else:
+        return # change between open statuses, no data retention recalculation needed
 
+    if isinstance(new_retention, int):
+        itip.expiration_date = datetime_now() + timedelta(new_retention)
+    else:
+        # infinite data retention, i.e. the 1st January 3000
+        itip.expiration_date = datetime(3000, 1, 1)
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason=None):
     """
@@ -238,14 +245,19 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if status_id == 'new':
         return
 
-    if itip.status == 'closed' and not is_coordinator(session, user_id, context_from_itip(session, itip.id)):
-        raise errors.ForbiddenOperation # only coordinators can restore closed tips
+    can_reopen_reports = session.query(models.User.can_reopen_reports).filter(models.User.id == user_id).one()[0]
+    report_restore_request = itip.status == "closed" and status_id == "opened"
 
-    if itip.status == 'closed' and reason is None:
+    if report_restore_request and not can_reopen_reports:
+        raise errors.ForbiddenOperation # mandatory permission setting missing
+
+    if report_restore_request and reason is None:
         raise errors.ForbiddenOperation # reason must be given when restoring closed tips
 
     itip.status = status_id
     itip.substatus = substatus_id or None
+
+    recalculate_data_retention(session, itip, report_restore_request)
 
     log_data = {
       'status': itip.status,
