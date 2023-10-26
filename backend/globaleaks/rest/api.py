@@ -96,7 +96,7 @@ api_spec = [
     (r'/api/custodian/iars/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     # Analyst Handlers
-    (r'/api/analyst/get_stats', analyst.GetStats),
+    (r'/api/analyst/stats', analyst.GetStats),
 
     # Admin Handlers
     (r'/api/admin/node', admin.node.NodeInstance),
