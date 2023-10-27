@@ -17,6 +17,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.whistleblower.submission import db_create_receivertip, decrypt_tip
+from globaleaks.handlers.whistleblower.wbtip import db_notify_report_update
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers, Context
 from globaleaks.orm import db_get, db_del, db_log, transact, tw
@@ -217,6 +218,13 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
 
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
+
+    # send mail notification to all users in context excluding <user_id>
+    for user_to_notify in session.query(models.User) \
+                                 .filter(models.ReceiverContext.context_id == itip.context_id,
+                                         models.ReceiverContext.receiver_id != user_id,
+                                         models.User.id == models.ReceiverContext.receiver_id):
+        db_notify_report_update(session, user_to_notify, rtip, itip)
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
