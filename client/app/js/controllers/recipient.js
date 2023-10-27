@@ -88,6 +88,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     }
   });
 
+  $scope.actLikeSegnalante = function() {
+    return console.log("da implementare")
+  }
+
   $scope.open_grant_access_modal = function () {
     return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
       var selectable_recipients = [];
