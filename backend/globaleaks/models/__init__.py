@@ -1000,6 +1000,7 @@ class _User(Model):
                  'can_grant_access_to_reports',
                  'can_transfer_access_to_reports',
                  'can_edit_general_settings',
+                 'can_reopen_reports',
                  'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']
