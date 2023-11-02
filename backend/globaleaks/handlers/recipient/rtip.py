@@ -231,7 +231,7 @@ def recalculate_data_retention(session, itip, report_restore_request):
         # infinite data retention, i.e. the 1st January 3000
         itip.expiration_date = datetime(3000, 1, 1)
 
-def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason=None):
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason=None, to_be_logged=True):
     """
     Transaction for registering a change of status of a submission
 
@@ -265,7 +265,8 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
       'reason': reason,
     }
 
-    db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
+    if to_be_logged:
+        db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
@@ -282,10 +283,12 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
+    to_be_logged = True
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
+        to_be_logged = False
 
-    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason)
+    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason, to_be_logged)
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
