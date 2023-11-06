@@ -643,6 +643,7 @@ class _InternalTip(Model):
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
     deprecated_crypto_files_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    receipt_change_needed = Column(Boolean, default=False, nullable=False)
 
     @declared_attr
     def __table_args__(self):
