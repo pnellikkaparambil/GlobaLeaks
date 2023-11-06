@@ -82,6 +82,7 @@ api_spec = [
     (r'/api/recipient/wbfiles/' + uuid_regexp, recipient.rtip.WhistleblowerFileDownload),
 
     # Whistleblower Handlers
+    (r'/api/whistleblower/operations', whistleblower.wbtip.Operations),
     (r'/api/whistleblower/submission', whistleblower.submission.SubmissionInstance),
     (r'/api/whistleblower/submission/attachment', whistleblower.attachment.SubmissionAttachment),
     (r'/api/whistleblower/wbtip', whistleblower.wbtip.WBTipInstance),
