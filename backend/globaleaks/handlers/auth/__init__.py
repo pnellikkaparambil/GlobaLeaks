@@ -16,7 +16,7 @@ from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
-from globaleaks.utils.utility import datetime_now, deferred_sleep
+from globaleaks.utils.utility import datetime_now, deferred_sleep, uuid4
 
 
 def db_login_failure(session, tid, whistleblower=False):
@@ -98,7 +98,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
         else:
             crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
-    db_log(session, tid=tid,  type='whistleblower_login')
+    db_log(session, tid=tid, type='whistleblower_login')
 
     return Sessions.new(tid, itip.id, tid, 'whistleblower', crypto_prv_key)
 
@@ -222,7 +222,7 @@ class ReceiptAuthHandler(BaseHandler):
     """
     Receipt handler for whistleblowers
     """
-    check_roles = 'any'
+    check_roles = {'recipient', 'whistleblower'}
 
     @inlineCallbacks
     def post(self):
@@ -235,12 +235,16 @@ class ReceiptAuthHandler(BaseHandler):
 
         if request['receipt']:
             session = yield login_whistleblower(self.request.tid, request['receipt'], self.request.client_using_tor)
-
         else:
             if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
                 raise errors.SubmissionDisabled
 
             session = initialize_submission_session(self.request.tid)
+
+        if self.session is not None and self.session.user_role == "receiver":
+            # this is actually an operator which is operating to aid a whistleblower via phone call
+            session.properties["operator_session"] = self.session.user_id
+            del Sessions[self.session.id]
 
         returnValue(session.serialize())
 
@@ -291,3 +295,22 @@ class TenantAuthSwitchHandler(BaseHandler):
         session.properties['management_session'] = True
 
         return {'redirect': '/t/%s/#/login?token=%s' % (State.tenants[tid].cache.uuid, session.id)}
+
+
+class OperatorAuthSwitchHandler(BaseHandler):
+    """
+    Login handler for switching tenant
+    """
+    check_roles = 'receiver'
+
+    def get(self):
+        session = Sessions.new(self.session.user_tid,
+                               uuid4(),
+                               self.session.user_tid,
+                               "whistleblower",
+                               self.session.cc,
+                               self.session.ek)
+
+        session.properties['operator_session'] = self.session.user_id
+
+        return {'redirect': '/#/?token=%s' % (session.id)}
