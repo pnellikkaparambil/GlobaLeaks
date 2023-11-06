@@ -5,6 +5,7 @@ import base64
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.whistleblower.wbtip import db_wbop_log
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.utils.crypto import GCE
@@ -61,7 +62,7 @@ class SubmissionAttachment(BaseHandler):
 
     def post(self):
         self.uploaded_file['submission'] = True
-
+        db_wbop_log(self.session, "add_file")
         self.session.files.append(self.uploaded_file)
 
 

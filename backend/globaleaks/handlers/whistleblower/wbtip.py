@@ -16,7 +16,7 @@ from globaleaks.handlers.whistleblower.submission import decrypt_tip, \
     db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_get, transact
+from globaleaks.orm import db_log, db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
@@ -160,6 +160,11 @@ def change_receipt(session, itip_id, cc, new_receipt):
     # update private keys
     itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, cc))
 
+@transact
+def db_wbop_log(session, http_session, operation):
+    db_log(session, tid=http_session.tid, user_id=http_session.get("operator_session"),
+           object_id=http_session.user_id, data={"operation": operation})
+
 
 class Operations(BaseHandler):
     """
@@ -199,6 +204,7 @@ class WBTipCommentCollection(BaseHandler):
 
     def post(self):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
+        db_wbop_log(self.session, "add_comment")
         return create_comment(self.request.tid, self.session.user_id, request['content'])
 
 
@@ -264,7 +270,7 @@ class WBTipAdditionalQuestionnaire(BaseHandler):
 
     def post(self):
         request = self.validate_request(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
-
+        db_wbop_log(self.session, "fill_additional_questionnaire")
         return store_additional_questionnaire_answers(self.request.tid,
                                                       self.session.user_id,
                                                       request['answers'],
