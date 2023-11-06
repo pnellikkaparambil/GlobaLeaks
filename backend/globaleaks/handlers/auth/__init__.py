@@ -56,7 +56,7 @@ def login_delay(tid):
 
 
 @transact
-def login_whistleblower(session, tid, receipt, client_using_tor):
+def login_whistleblower(session, tid, receipt, client_using_tor, related_receiver_id=None):
     """
     Login transaction for whistleblowers' access
 
@@ -98,7 +98,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
         else:
             crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
-    db_log(session, tid=tid, type='whistleblower_login')
+    db_log(session, tid=tid, type='whistleblower_login', user_id=related_receiver_id, object_id=itip.id)
 
     return Sessions.new(tid, itip.id, tid, 'whistleblower', crypto_prv_key)
 
@@ -227,6 +227,7 @@ class ReceiptAuthHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         request = self.validate_request(self.request.content.read(), requests.ReceiptAuthDesc)
+        operator_acting_as_wb = self.session is not None and self.session.user_role == "receiver"
 
         yield login_delay(self.request.tid)
 
@@ -234,14 +235,15 @@ class ReceiptAuthHandler(BaseHandler):
                          self.request.client_ip, self.request.client_using_tor)
 
         if request['receipt']:
-            session = yield login_whistleblower(self.request.tid, request['receipt'], self.request.client_using_tor)
+            session = yield login_whistleblower(self.request.tid, request['receipt'], self.request.client_using_tor,
+                                                self.session.user_id if operator_acting_as_wb else None)
         else:
             if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
                 raise errors.SubmissionDisabled
 
             session = initialize_submission_session(self.request.tid)
 
-        if self.session is not None and self.session.user_role == "receiver":
+        if operator_acting_as_wb:
             # this is actually an operator which is operating to aid a whistleblower via phone call
             session.properties["operator_session"] = self.session.user_id
             del Sessions[self.session.id]
@@ -267,7 +269,8 @@ class SessionHandler(BaseHandler):
         Logout
         """
         if self.session.user_role == 'whistleblower':
-            yield tw(db_log, tid=self.session.tid,  type='whistleblower_logout')
+            yield tw(db_log, tid=self.session.tid,  type='whistleblower_logout',
+                     user_id=self.session.properties["operator_session"])
         else:
             yield tw(db_log, tid=self.session.tid,  type='logout', user_id=self.session.user_id)
 
