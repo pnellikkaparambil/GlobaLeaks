@@ -222,7 +222,7 @@ class ReceiptAuthHandler(BaseHandler):
     """
     Receipt handler for whistleblowers
     """
-    check_roles = {'recipient', 'whistleblower'}
+    check_roles = 'any'
 
     @inlineCallbacks
     def post(self):
@@ -270,7 +270,7 @@ class SessionHandler(BaseHandler):
         """
         if self.session.user_role == 'whistleblower':
             yield tw(db_log, tid=self.session.tid,  type='whistleblower_logout',
-                     user_id=self.session.properties["operator_session"])
+                     user_id=self.session.properties.get("operator_session"))
         else:
             yield tw(db_log, tid=self.session.tid,  type='logout', user_id=self.session.user_id)
 

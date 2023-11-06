@@ -292,4 +292,4 @@ class SubmissionInstance(BaseHandler):
                                  self.session,
                                  self.request.client_using_tor,
                                  self.request.client_using_mobile,
-                                 self.session.properties["operator_session"])
+                                 self.session.properties.get("operator_session"))
