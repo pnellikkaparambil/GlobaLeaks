@@ -265,6 +265,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         db_create_receivertip(session, user, itip, _tip_key)
 
+    itip.receipt_change_needed = related_receiver_id is not None
     db_log(session, tid=tid, type='whistleblower_new_report', user_id=related_receiver_id, object_id=itip.id)
 
     return {'receipt': receipt}

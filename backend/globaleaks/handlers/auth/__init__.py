@@ -98,6 +98,8 @@ def login_whistleblower(session, tid, receipt, client_using_tor, related_receive
         else:
             crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
+    itip.receipt_change_needed = related_receiver_id is not None
+
     db_log(session, tid=tid, type='whistleblower_login', user_id=related_receiver_id, object_id=itip.id)
 
     return Sessions.new(tid, itip.id, tid, 'whistleblower', crypto_prv_key)
