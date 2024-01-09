@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  globaleaks:
+    build: .
+    restart: unless-stopped
+    container_name: globaleaks-loc
+    network_mode: bridge
+    volumes:
+      - globaleaks:/var/globaleaks
+    ports:
+      - 8080:8080
+      - 8443:8443
+
+volumes:
+  globaleaks:
