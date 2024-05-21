@@ -40,7 +40,6 @@ export class SitesTabProfilesComponent implements OnInit {
     this.httpService.addTenant(this.newTenant).subscribe(res => {
       this.tenants.push(res);
       this.newTenant.name = "";
-      this.newTenant.is_profile = false;
     });
   }
 }
